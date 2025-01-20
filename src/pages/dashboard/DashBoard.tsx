@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react"
 import React, { useContext, useEffect, useState } from "react";
 import { getFinance, DataFinance} from '@services/finance/FinanceService'
-import { currencyFormatterBRL, currencyFormatterUS } from '@utils/CurrencyUtils';
+import { currencyFormatterBRL, currencyFormatterUS,  currencyFormatterJAP } from '@utils/CurrencyUtils';
 import { CookieContext } from "@store/CookieProvider"
 import { CookieContextType } from "@store/cookie"
 import  InfiniteMarquee  from '../../components/Infinite/InfiniteMarquee';
@@ -40,7 +40,7 @@ const DashBoard = () => {
         <Stack gap={5}>
             <Text  fontWeight="bold" fontSize={25}>Bolsa de valores</Text>        
             <HStack gap={5}>
-                <Card width={"250px"}>
+                <Card width={"210px"}>
                     <CardHeader>
                         <Stat>
                             <StatLabel>IBOVESPA</StatLabel>
@@ -56,7 +56,7 @@ const DashBoard = () => {
                         </Stat>
                     </CardHeader>
                 </Card>
-                <Card width={"250px"}>
+                <Card width={"210px"}>
                     <CardHeader>
                         <Stat>
                             <StatLabel>NASDAQ</StatLabel>
@@ -72,7 +72,7 @@ const DashBoard = () => {
                         </Stat>
                     </CardHeader>
                 </Card>
-                <Card width={"250px"}>
+                <Card width={"210px"}>
                     <CardHeader>
                         <Stat>
                             <StatLabel>DOWJONES</StatLabel>
@@ -84,6 +84,38 @@ const DashBoard = () => {
                                         <StatArrow type='decrease' />
                                     )}
                                     {results.stocks.DOWJONES.variation + '%'}
+                                </StatHelpText>
+                        </Stat>
+                    </CardHeader>
+                </Card>
+                <Card width={"210px"}>
+                    <CardHeader>
+                        <Stat>
+                            <StatLabel>IFIX</StatLabel>
+                            <StatNumber>{currencyFormatterBRL(results.stocks.IFIX.points)}</StatNumber>
+                                <StatHelpText>
+                                    {results.stocks.IFIX.variation > 0 ? (
+                                        <StatArrow type='increase' />
+                                    ): (
+                                        <StatArrow type='decrease' />
+                                    )}
+                                    {results.stocks.IFIX.variation + '%'}
+                                </StatHelpText>
+                        </Stat>
+                    </CardHeader>
+                </Card>
+                <Card width={"210px"}>
+                    <CardHeader>
+                        <Stat>
+                            <StatLabel>NIKKEI</StatLabel>
+                            <StatNumber>{currencyFormatterJAP(results.stocks.NIKKEI.points)}</StatNumber>
+                                <StatHelpText>
+                                    {results.stocks.NIKKEI.variation > 0 ? (
+                                        <StatArrow type='increase' />
+                                    ): (
+                                        <StatArrow type='decrease' />
+                                    )}
+                                    {results.stocks.NIKKEI.variation + '%'}
                                 </StatHelpText>
                         </Stat>
                     </CardHeader>
@@ -115,7 +147,7 @@ const DashBoard = () => {
                     <CardHeader>
                         <Stat>
                             <StatLabel>Euro Hoje</StatLabel>
-                            <StatNumber>{currencyFormatterUS(results.currencies.EUR.buy)}</StatNumber>
+                            <StatNumber>{currencyFormatterBRL(results.currencies.EUR.buy)}</StatNumber>
                                 <StatHelpText>
                                     {results.currencies.EUR.variation > 0 ? (
                                         <StatArrow type='increase' />
@@ -127,8 +159,25 @@ const DashBoard = () => {
                         </Stat>
                     </CardHeader>
                 </Card>
+                <Card width={"250px"}>
+                    <CardHeader>
+                        <Stat>
+                            <StatLabel>BITCOINS Hoje</StatLabel>
+                            <StatNumber>{currencyFormatterBRL(results.currencies.BTC.buy)}</StatNumber>
+                                <StatHelpText>
+                                    {results.currencies.BTC.variation > 0 ? (
+                                        <StatArrow type='increase' />
+                                    ): (
+                                        <StatArrow type='decrease' />
+                                    )}
+                                    {results.currencies.BTC.variation + '%'}
+                                </StatHelpText>
+                        </Stat>
+                    </CardHeader>
+                </Card>
             </HStack>
         </Stack>
+    
         ): null}
     </Flex>
     );
