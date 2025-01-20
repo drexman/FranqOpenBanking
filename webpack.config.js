@@ -2,51 +2,51 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, "src", "index.js"),
+  mode: 'development',
+  entry: path.resolve(__dirname, "src/index.tsx"),
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts'],
+    extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/Components'),
-      '@config': path.resolve(__dirname, 'src/Config'),
-      '@page': path.resolve(__dirname, 'src/Pages'),
-      '@routes': path.resolve(__dirname, 'src/Routes'),
-      '@services': path.resolve(__dirname, 'src/Services'),
-      '@utils': path.resolve(__dirname, 'src/Utils'),
+      '@components' : path.resolve(__dirname, 'src/components'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@store' : path.resolve(__dirname, 'src/db'),
+      '@utils' : path.resolve(__dirname, 'src/utils'),
     },
   },
+  
   module: {
     rules: [
         {
-            test: /\.svg$/,
-            use: ['@svgr/webpack'],
+          test: /\.(js|jsx|ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {loader: 'babel-loader', options:{ presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],},},
         },
         {
-            test: /\.(png|jp(e*)g|svg|gif)$/,
-            use: ['file-loader'],
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
         },
         {
-            test: /\.css$/i,
-            use: ["style-loader", "css-loader"],
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
         },
-      {
-        test: /\.?(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      },
     ]
   },
-  plugins: [
+  
+  plugins:[
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
+      template: "src/public/index.html", // create a template to start from
     }),
   ],
+
+  devServer: {
+    static: './dist',
+    historyApiFallback: true,
+    port: 3000, // Port to run the development server on
+    hot: true, // Enable hot module replacement
+  },
 }
