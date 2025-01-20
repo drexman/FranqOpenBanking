@@ -37,12 +37,14 @@ Quando realizar clonagem do repositório, dentro do repositório executar comand
 ```bash
  yarn install 
 ```
-Etapa para rodar aplicação, executar comando 
+<h4>
+    4 .Etapa para rodar aplicação, executar comando 
+</h4>
 ```bash
 yarn start
 ```
 
 Para acessar: http://locahost:3000
 
-Quando acessar na tela do
+
 
