@@ -2,6 +2,9 @@
   "name": "franqopenbanking",
   "version": "1.0.0",
   "description": "FranqOpenBanking",
+  "engines": {
+    "node": "22.03.0"
+  },
   "scripts": {
     "devbuild": "webpack --mode development --config webpack.config.js ",
     "start": "webpack serve",
