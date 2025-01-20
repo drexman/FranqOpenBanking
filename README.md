@@ -54,8 +54,7 @@ Usuário Teste
 Login: samuel.oizume@hotmail.com
 Senha: 12345
 
-Atenção devido uso do dominio localhost, Api da requisiçaõ não irá funcionar corretamento.
-allow-cors-access-control irá barrar na requisição, peço por gentileza de instalar extensao do chrome: https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
+ Devido ao uso do domínio localhost, a API da requisição não funcionará corretamente devido a restrições de CORS (Cross-Origin Resource Sharing). O navegador bloqueará a requisição, impedindo que a aplicação cliente acesse recursos de um domínio diferente. Peço por gentileza de instalar extensao do chrome: https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
 
 
 Para acessar: http://locahost:3000
