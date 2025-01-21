@@ -52,12 +52,22 @@ interface Stocks  {
         variation: number
     },
 }
+export interface TAXE {
+    date: string,
+    cdi: number,
+    selic: number,
+    daily_factor: number,
+    selic_daily: number,
+    cdi_daily: number,
+}
+
 
 
 export interface DataFinance {
     results: {
         currencies: Currencies,
         stocks: Stocks 
+        taxes: Array<TAXE>
     }
 }
 
@@ -72,5 +82,5 @@ export const getFinance = async () => {
 };
 
 export const getBlueChip = async () => {
-    
+
 }

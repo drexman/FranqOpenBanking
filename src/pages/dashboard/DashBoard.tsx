@@ -10,7 +10,13 @@ import {
     StatHelpText,
     StatArrow,
     CardHeader,
-    Text
+    Text,
+    Table,
+    Thead,
+    Th,
+    Tr,
+    Td,
+    Tbody
 } from "@chakra-ui/react"
 import React, { useContext, useEffect, useState } from "react";
 import { getFinance, DataFinance} from '@services/finance/FinanceService'
@@ -38,7 +44,7 @@ const DashBoard = () => {
     >
         {results?.stocks ? (
         <Stack gap={5}>
-            <Text  fontWeight="bold" fontSize={25}>Bolsa de valores</Text>        
+            <Text  fontWeight="bold" fontSize={25}>Os índices</Text>        
             <HStack gap={5}>
                 <Card width={"210px"}>
                     <CardHeader>
@@ -177,8 +183,37 @@ const DashBoard = () => {
                 </Card>
             </HStack>
         </Stack>
-    
         ): null}
+        <Stack gap={5} marginTop={10}>
+            <Text  fontWeight="bold" fontSize={25}>Taxas de Juros Nacionais</Text>        
+            <HStack gap={5}>
+                <Table variant='striped' colorScheme='teal' width={500}>
+                    <Thead>
+                        <Tr>
+                            <Th>Taxa Selic</Th>
+                            <Th>Taxa CDI</Th>
+                            <Th>Atualizado em</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {results?.taxes.map((taxe) => (
+                            <Tr>
+                                <Td>
+                                    {taxe.selic + "%"} 
+                                </Td>
+                                <Td>
+                                    {taxe.cdi + "%"}
+                                </Td>
+                                <Td>
+                                    {new Date(taxe.date).toLocaleDateString()}
+                                </Td>
+                            </Tr>
+                        ))}
+          
+                    </Tbody>
+                </Table>
+            </HStack>
+        </Stack>
     </Flex>
     );
 }
