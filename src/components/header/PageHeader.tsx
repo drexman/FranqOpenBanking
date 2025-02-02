@@ -17,7 +17,7 @@ export default function PageHeader() {
     }
 
     return (
-        <Flex as="nav" p="10px" justifyContent="space-between" padding={6} bg="gray.600">
+        <Flex as="nav" p="10px" justifyContent="space-between" padding={6} bg="gray.400DD">
             <Heading as="h1"><Image src="https://www.franq.com.br/wp-content/uploads/2022/10/LOGO.svg" /></Heading>
             <Spacer />
             <Card bg="gray.200" p="4px">

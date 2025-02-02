@@ -38,3 +38,4 @@ package.lock
 
 #templates
 _templates
+*storybook.log
