@@ -30,7 +30,7 @@ export default function PageHeader() {
                             {cookie.token ? (
                                 <div>
                                     <Heading size='sm'>{cookie.token.name}</Heading>
-                                    <Text><Link onClick={() => {cookie.clear(); navigate('/login');}}>Sair</Link></Text>    
+                                    <Text><Link onClick={() => {cookie.clear(); navigate('/login');}}>Sair </Link></Text>    
                                 </div>
                                 ):(
                                 <div>
